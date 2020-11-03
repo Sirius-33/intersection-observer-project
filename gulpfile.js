@@ -19,13 +19,29 @@ function processSass() { //chews through sass and prints out css(task function)
         .pipe(connect.reload()); //reloads liveserver 
 }
 
-function watch() { //updating changes
-    gulp.watch("src/sass/**/*.scss", {
-        ignoreInitial: false
-    }, processSass);
+function processJS() {
+    return gulp.src("src/js/**/*.js")
+
+        //køre det igennem babel
+        .pipe(gulp.dest('dist/assets/js')) //destinationen for filen
+        .pipe(connect.reload()); //opdatere browseren hver gang der gemmes
+}
+
+
+function watch() {
+    gulp.watch("src/scss/**/*.scss", {
+            ignoreInitial: false
+        },
+        processSass);
     gulp.watch("src/html/**/*.html", {
-        ignoreInitial: false
-    }, processHTML);
+            ignoreInitial: false
+        },
+        processHTML);
+    // ignoreInitial køre filerne fra starten af/skaber dist mappen fra start + ved ændringer
+    gulp.watch("src/js/**/*.js", {
+            ignoreInitial: false
+        },
+        processJS);
 }
 
 function server() {
