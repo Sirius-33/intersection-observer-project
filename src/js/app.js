@@ -25,6 +25,9 @@ function catchThemAll(offset) {
         });
 };
 
+function catchAllTheImages(offset) {
+    fetch(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${offset}.png`)
+}
 /* getThePokemons(0);
 getThePokemons(10);
 getThePokemons(20); */
