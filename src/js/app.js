@@ -1,6 +1,7 @@
 var offset = 0;
+var count;
 
-function getThePokemons(offset) {
+function catchThemAll(offset) {
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset}`)
         .then(function (response) {
             return response.json();
@@ -8,6 +9,8 @@ function getThePokemons(offset) {
         .then(function (data) {
             var template = document.getElementById("template");
             var ul = document.querySelector(".pokeList");
+
+            count = data.count;
 
             data.results.forEach(function (result) {
                 /* console.log(result.name); */
@@ -28,12 +31,17 @@ getThePokemons(20); */
 
 // Så tilføjer vi en intersection observer
 var observer = new IntersectionObserver(function (entries) {
+    if (entries[0].intersectionRatio <= 0) return;
+    observer.unobserve(entries[0].target)
     /*  console.log(entries[0]); */
     offset = offset + 10;
-    getThePokemons(offset)
+
+    if (offset > count) return;
+
+    catchThemAll(offset)
 }, {
     threshold: 1
 });
 
 
-getThePokemons(offset);
+catchThemAll(offset);
