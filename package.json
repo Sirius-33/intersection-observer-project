@@ -1,0 +1,26 @@
+{
+  "name": "intersection-observer-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sirius-33/intersection-observer-project.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sirius-33/intersection-observer-project/issues"
+  },
+  "homepage": "https://github.com/Sirius-33/intersection-observer-project#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-connect": "^5.7.0",
+    "gulp-sass": "^4.1.0"
+  }
+}
