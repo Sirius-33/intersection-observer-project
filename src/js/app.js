@@ -16,7 +16,17 @@ function catchThemAll(offset) {
                 /* console.log(result.name); */
                 var clone = template.content.cloneNode(true);
 
-                clone.querySelector("li").innerText = result.name;
+                var img = clone.querySelector(".pokeImg");
+
+                name.innerText = result.name;
+
+
+                getImage(result.url)
+                    .then(function (imageURL) {
+                        img.dataset.src = imageURL;
+                        imageObserver.observe(img);
+                    })
+
                 ul.appendChild(clone);
             });
             var lastChild = document.querySelector(".pokeList li:last-child");
@@ -25,26 +35,6 @@ function catchThemAll(offset) {
         });
 };
 
-function catchAllTheImages(offset) {
-    fetch(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${offset}.png`)
-}
-/* getThePokemons(0);
-getThePokemons(10);
-getThePokemons(20); */
-
 // Så tilføjer vi en intersection observer
-var observer = new IntersectionObserver(function (entries) {
-    if (entries[0].intersectionRatio <= 0) return;
-    observer.unobserve(entries[0].target)
-    /*  console.log(entries[0]); */
-    offset = offset + 10;
-
-    if (offset > count) return;
-
-    catchThemAll(offset)
-}, {
-    threshold: 1
-});
-
 
 catchThemAll(offset);

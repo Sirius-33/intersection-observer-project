@@ -2,6 +2,7 @@ var gulp = require("gulp");
 var sass = require("gulp-sass"); //imports sass
 var cleanCss = require("gulp-clean-css"); //css minify
 var connect = require("gulp-connect");
+var concat = require("gulp-concat");
 
 function processHTML() {
     return gulp.src("src/html/**/*.html")
@@ -21,7 +22,7 @@ function processSass() { //chews through sass and prints out css(task function)
 
 function processJS() {
     return gulp.src("src/js/**/*.js")
-
+        .pipe(concat("app.js"))
         //køre det igennem babel
         .pipe(gulp.dest('dist/assets/js')) //destinationen for filen
         .pipe(connect.reload()); //opdatere browseren hver gang der gemmes
